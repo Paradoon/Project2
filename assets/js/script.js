@@ -1,41 +1,53 @@
 var character = document.getElementById("character");
 var game = document.getElementById("game");
+var ball = document.getElementById("ball");
+
 var interval;
-var both = 0;
-var counter = 0;
-var currentBlocks = [];
 
-function moveLeft() {
-    var left = 
-    parseInt(window.getComputedStyle(character).getPropertyValue("left"));
-    if(left>0) {
-        character.style.left = left - 2 + "px";
+//Computer movement
+function move() {
+    var ballMove = document.getElementById("ball");
+    var pos = 600;
+    interval = setInterval(start, 5);
+
+    var dir = 1;
+    var pos = 0;
+
+    function start() {
+        if (pos > 400) dir = -1
+        else if (pos < 0) dir = 1
+        pos += dir
+        ballMove.style.top = pos + 'px';
     }
 }
 
-function moveRight() {
-    var left = 
-    parseInt(window.getComputedStyle(character).getPropertyValue("left"));
-    if(left>380) {
-        character.style.left = left + 2 + "px";
-    }
+function stop() {
+    window.clearInterval(interval);
 }
 
-document.addEventListener("keydown", event => {
-    if(both==0){
-        both++;
-        if(event.key==="ArrowLeft"){
-            interval = setInterval(moveLeft, 1);
-        }
-        if(event.key==="ArrowRight"){
-          interval = setInterval(moveRight, 1);
-        }
+
+//Character move 10px on keydown
+let moveBy = 10;
+
+window.addEventListener('load', () => {
+    character.style.position = 'absolute';
+    character.style.left = 0;
+    character.style.top = 0;
+});
+//Movement of character
+window.addEventListener('keydown', (e) => {
+    switch(e.key) {
+        case 'ArrowLeft':
+            character.style.left = parseInt(character.style.left) - moveBy + 'px'; 
+            break;
+        case 'ArrowRight':
+            character.style.left = parseInt(character.style.left) + moveBy + 'px'; 
+            break;
+        case 'ArrowUp':
+            character.style.top = parseInt(character.style.top) - moveBy + 'px'; 
+            break;
+        case 'ArrowDown':
+            character.style.top = parseInt(character.style.top) + moveBy + 'px'; 
+            break;
     }
-})
-
-document.addEventListener("keyup", event => {
-    clearInterval(interval);
-    both=0;
-})
-
-
+});

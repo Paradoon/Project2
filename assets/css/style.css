@@ -1,40 +1,47 @@
+#outer-area {
+    background-color: lightgreen;
+}
+
 #game {
-    border: 2px solid whitesmoke;
+    border: 10px solid whitesmoke;
     background-color: blue;
     width: 400px;
-    height: 500px;
+    height: 600px;
     margin: auto;
+    position: relative;
 }
 
 #character {
     width: 20px;
     height: 20px;
     background-color: red;
-    border-radius: 50%;
-    position: relative;
-    top: 400px;
-    left: 190px;
-    z-index: 1000000;
+    position: absolute;
+    top: 40px;
+    left: 50px;
 }
 
 h1 {
-    text-align: center;
+    float: left;
 }
 
-.block{
-    width: 400px;
-    height: 20px;
+#ball {
+    width: 25px;
+    height: 25px;
     background-color: black;
-    position: relative;
-    top: 100px;
-    margin-top: -20px;
+    border-radius: 50%;
+    z-index: 2;
+    position: absolute;
+    top: 200px;
 }
 
-.hole{
-    width: 40px;
-    height: 20px;
-    background-color: blue;
-    position: relative;
-    top: 100px;
-    margin-top: -20px;
+.ladder {
+    width: 100%;
+    height: auto;
+}
+
+#ladders {
+    width: 20%;
+    position: absolute;
+    left: 80%;
+    top: 89.6%;
 }

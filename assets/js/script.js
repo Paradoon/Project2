@@ -2,29 +2,19 @@ var character = document.getElementById("character");
 var game = document.getElementById("game");
 var ball = document.getElementById("ball");
 
-var interval;
 
-//Computer movement
-function move() {
-    var ballMove = document.getElementById("ball");
-    var pos = 600;
-    interval = setInterval(start, 5);
-
-    var dir = 1;
-    var pos = 0;
-
-    function start() {
-        if (pos > 400) dir = -1
-        else if (pos < 0) dir = 1
-        pos += dir
-        ballMove.style.top = pos + 'px';
+//Check crash
+var checkDead = setInterval((function){
+    var characterLeft = 
+    parseInt(window.getComputedStyle(character).getPropertyValue("left"));
+    var ballRight = 
+    parseInt(window.getComputedStyle(ball).getPropertyValue("right"));
+    if(ballRight<20 && ballRight>20 && characterLeft>=20) {
+        ball.style.animation = "none";
+        ball.style.display = "none";
+        alert("You lose!");
     }
-}
-
-function stop() {
-    window.clearInterval(interval);
-}
-
+},10);
 
 //Character move 10px on keydown
 let moveBy = 10;
